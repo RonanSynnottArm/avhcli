@@ -94,7 +94,7 @@ get_ip() {
   echo "Instance Service IP is: $IP"
   echo "Instance LAN IP is: $LANIP"
   echo "To connect to the console: nc $IP 2000"
-  echo "To ssh in, use: ssh pi@$LANIP"
+  echo "To ssh in, use: ssh <username>@$LANIP"
   echo "IP information has been saved in $BASEDIR/"$NAME"_ip.txt and $BASEDIR/"$NAME"_lan_ip.txt"
 }
 

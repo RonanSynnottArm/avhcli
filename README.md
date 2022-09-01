@@ -8,20 +8,22 @@ For more information: https://avh.arm.com/
 
 curl and jq should be installed on the system, as well as the OpenVPN client and netcat to connect to the instance. To install them on Debian machines:
 
-```
+```console
 sudo apt install curl jq openvpn netcat
 ```
 
 ## Installation
 
-```
-git clone https://github.com/mdupuy/avhcli.git
+```console
+git clone https://github.com/ARM-software/avhcli.git
+
 ```
 
 ## Usage
 
 ```
 ./avhcli.sh -h
+
 Usage: avhcli.sh [--help | -h] [--token | -t TOKEN] [--name | -n NAME] [--model | -m MODEL] OPERATION
 CLI tool for Arm Virtual Hardware.
     --help  | -h         display this help and exit
@@ -45,29 +47,28 @@ Log in to https://app.avh.arm.com/, go to _Profile_ > _API_ > _Generate_ and cop
 
 ## Connect to an instance
 
-When an instance is created, connection information (ip.txt and avh.ovpn) are stored where avhcli is installed.
+When an instance is created, connection information (<NAME>_ip.txt, <NAME>_console.txt and avh.ovpn) are stored where avhcli is installed.
 
 ### 1. Connect to VPN
 
-```
+```console
 sudo openvpn --config avh.ovpn --daemon
 ```
 
 ### 2. Connect to the console
 
-```
+```console
 nc $(cat <name>_ip.txt) 2000
 ```
 
 ### 3. ssh to LAN IP (different from service console and debug IP)
 
-```
+```console
 ssh $(cat <name>_lan_ip.txt)
 ```
 
 ### 4. WebSocket URL to the console (useful with python WebSocket, as well as commandline utilities like websocat and wscat)
 
-```
+```console
 ./ws.py $(<name>_console.txt) "echo Hello world" n
 ```
-
